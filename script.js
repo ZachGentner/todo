@@ -20,10 +20,14 @@ function addTask() {
         //Create a new line item element.
         let task = document.createElement("li");
 
+
         //Create and append checkbox
-        let checkbox = document.createElement("input");
-        checkbox.setAttribute("class", "checkbox");
-        checkbox.setAttribute("type", "checkbox");
+        let checkbox = document.createElement("button");
+        checkbox.className = "checkbox btn btn-secondary";
+        let icon = document.createElement("i");
+        icon.className = "fa-solid fa-check";
+
+        checkbox.appendChild(icon);
         task.appendChild(checkbox);
 
         //Create and append content
