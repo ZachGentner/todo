@@ -28,10 +28,7 @@ function addTask() {
 
         //Create and append checkbox button
         let btn = document.createElement("button");
-        btn.className = "checkbox btn btn-warning";
-        let icon = document.createElement("i");
-        icon.className = "checkbox fa-solid fa-check";
-        btn.appendChild(icon);
+        btn.className = "checkbox btn btn-warning checkbox fa-solid fa-check";
         task.appendChild(btn);
 
         //Create and append edit button
