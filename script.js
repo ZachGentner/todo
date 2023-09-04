@@ -65,11 +65,14 @@ function removeTask(e) {
 
 //EDIT A TASK FROM THE LIST
 function editTask(e) {
-    if (e.target.classList.contains("edit")) {
+    if (e.target.classList.contains("edit") && e.target.parentElement.querySelector("input") === null) {
+        //Disable search functionality while in edit mode.
+        let editing = false;
+        search.setAttribute("disabled", "true");
+
         //Remove the task from view, storing the data in a temp variable.
         let todo = e.target.parentElement;
         let content = todo.querySelector("p")
-        search.setAttribute("disabled", "true");
         content.remove();
         
         //Create a text field for the list item.
@@ -78,6 +81,7 @@ function editTask(e) {
         field.className = ("m-1")
         field.setAttribute("type", "text");
         field.setAttribute("placeholder", content.innerText);
+        // field.value = content.innerText; //Will add former text content to input field rather than a placeholder.
 
         //Add the new text field as a child of the list item.
         todo.appendChild(field);
@@ -90,14 +94,21 @@ function editTask(e) {
                     temp.innerText = e.target.value;
                     e.target.parentElement.appendChild(temp);
                     e.target.remove();
-                    search.removeAttribute("disabled");
+
+                    //Check to see if any other elements are in edit mode. If they are not, enable search.
+                    for (let i = 0; i < list.childElementCount; i++) {
+                        if (list.children[i].querySelector("input") != null) {
+                            editing = true;
+                            return;
+                        }
+                    }
+
+                    if(editing === false) {
+                        search.removeAttribute("disabled"); // Enable search funcationality when exiting edit mode.
+                    }
                 }
             }
         })
-
-
-    } else if (e.target.parentElement.classList.contains("edit")) {
-        e.target.parentElement.parentElement.querySelector("p").remove();
     }
 }
 
