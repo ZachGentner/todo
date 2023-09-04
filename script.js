@@ -28,15 +28,15 @@ function addTask() {
 
         //Create and append checkbox button
         let btn = document.createElement("button");
-        btn.className = "checkbox btn btn-warning checkbox fa-solid fa-check";
+        btn.className = "checkbox btn btn-warning";
+        let icon = document.createElement("i");
+        icon.className = "checkbox fa-solid fa-check";
+        btn.appendChild(icon);
         task.appendChild(btn);
 
         //Create and append edit button
         btn = document.createElement("button");
-        btn.className = "edit mx-1 btn btn-secondary";
-        icon = document.createElement("i");
-        icon.className = "fa-regular fa-pen-to-square";
-        btn.appendChild(icon);
+        btn.className = "edit mx-1 btn btn-secondary fa-regular fa-pen-to-square";
         task.appendChild(btn);
 
         //Create and append content
