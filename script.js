@@ -67,23 +67,34 @@ function removeTask(e) {
 function editTask(e) {
     if (e.target.classList.contains("edit")) {
         //Remove the task from view, storing the data in a temp variable.
-        let content = e.target.parentElement.querySelector("p")
+        let todo = e.target.parentElement;
+        let content = todo.querySelector("p")
+        search.setAttribute("disabled", "true");
         content.remove();
-
-        //Create a new form to replace the task text.
-        let form = document.createElement("form");
         
-        //Create a text field for the form.
+        //Create a text field for the list item.
         let field = document.createElement("input");
         field.appendChild(document.createElement("input"));
-        field.className = ("edit m-1")
+        field.className = ("m-1")
         field.setAttribute("type", "text");
         field.setAttribute("placeholder", content.innerText);
 
-        form.appendChild(field);
-
         //Add the new text field as a child of the list item.
-        e.target.parentElement.appendChild(form);
+        todo.appendChild(field);
+
+        field.addEventListener("keydown", (e) => { //If user changes the input text and presses enter.
+            if (e.key === "Enter") {
+                if (e.target.value != "") {
+                    let temp = document.createElement("p");
+                    temp.className = "m-2";
+                    temp.innerText = e.target.value;
+                    e.target.parentElement.appendChild(temp);
+                    e.target.remove();
+                    search.removeAttribute("disabled");
+                }
+            }
+        })
+
 
     } else if (e.target.parentElement.classList.contains("edit")) {
         e.target.parentElement.parentElement.querySelector("p").remove();
