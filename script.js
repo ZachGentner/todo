@@ -30,7 +30,7 @@ function addTask() {
         let btn = document.createElement("button");
         btn.className = "checkbox btn btn-warning";
         let icon = document.createElement("i");
-        icon.className = "checkbox fa-solid fa-check";
+        icon.className = "fa-solid fa-check";
         btn.appendChild(icon);
         task.appendChild(btn);
 
