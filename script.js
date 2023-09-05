@@ -3,8 +3,18 @@ const form = document.querySelector('form');
 const input = document.querySelector('#input');
 const list = document.querySelector('#list');
 const search = document.querySelector('#search');
+let taskList = {};
 
 //EVENT HANDLERS
+window.addEventListener("load", () => {
+    // load all of the tasks from local storage
+});
+
+window.addEventListener("unload", () => {
+    //Save all of the tasks to a local storage variable
+    localStorage.setItem("tasks", JSON.stringify(taskList));
+});
+
 form.addEventListener("submit", (event) => {
     event.preventDefault();
     addTask();
@@ -47,6 +57,8 @@ function addTask() {
 
         //Append task to list and reset input value
         list.appendChild(task);
+        taskList[0] = task;
+        localStorage.setItem("tasks", JSON.stringify(taskList));
         input.value = '';
     }
 }
