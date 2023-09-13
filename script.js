@@ -86,9 +86,10 @@ function editTask(e) {
         
         //Create a text field for the list item.
         let field = document.createElement("input");
-        field.appendChild(document.createElement("input"));
         field.className = ("m-1")
         field.setAttribute("type", "text");
+        field.setAttribute("id", "edit");
+        field.setAttribute("name", "edit");
         field.setAttribute("placeholder", content.innerText);
         // field.value = content.innerText; //Will add former text content to input field rather than a placeholder.
 
